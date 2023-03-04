@@ -8,7 +8,19 @@ const botonComprar = document.querySelector('#boton-comprar');
 botonComprar.addEventListener('click', comprar);
 const iconoImg = document.querySelector('#icono-img');
 iconoImg.addEventListener('click', toggleTabla);
+
+//alert('funciona')
+
+///EVENTOS
+
+//evento click para boton compra
+ //evento click para carrito
+ //evento click para
+
+
+
 /////FUNCIONES
+
 
   //funcion crear tarjeta
 
@@ -59,13 +71,25 @@ const createCard = async () => {
     pintarEstrellas(producto.rating, card);
   });
 };
+
+
+  
+
+
+  
+
+
+  
+
   //funcion boton compra
+
   const onComprarClick = (producto, cantidad) => {
     addLocal(producto, cantidad); // Agrega el producto al carrito con la cantidad dada
     const carritoItem = JSON.parse(localStorage.getItem(producto.id));
     const boton = document.querySelector(`#boton-${producto.id}`);
     boton.textContent = `COMPRAR (${carritoItem.cantidad})`; // Actualiza el botón con la cantidad en el carrito para el producto dado
   };
+
   //funcion pintar tabla
   const addProduct = (producto, cantidad) => {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || {};
@@ -92,8 +116,9 @@ const createCard = async () => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
     updateCart();
   };
-  //FUNCION VACIAR CARRITO
 
+  //FUNCION VACIAR CARRITO
+  
   const clearCart = () => {
     localStorage.removeItem('carrito');
     const tablaCarrito = document.getElementById('tabla-carrito');
@@ -102,7 +127,9 @@ const createCard = async () => {
       tbody.removeChild(tbody.firstChild);
     }
   };
+
   //PINTAR PRODUCTO EN TABLA
+  
   const createRow = (producto) => {
     const row = document.createElement('tr');
     const imagenCell = document.createElement('td');
@@ -155,6 +182,9 @@ const createCard = async () => {
   const comprar = () => {
     window.location.href = 'paginaCompra.html';
   };
+
+
+
 // función mutar y subir al local (aumentar el precio y la cantidad)
 const addLocal = (producto, cantidad) => {
   const item = JSON.parse(localStorage.getItem(producto.id)) || {
@@ -168,12 +198,18 @@ const addLocal = (producto, cantidad) => {
   item.subtotal += producto.price * cantidad;
   localStorage.setItem(producto.id, JSON.stringify(item));
 };
+
+
 //FUNCION PARA MOSTRAR TOGGLE
 const toggleTabla = () => {
   const tabla = document.querySelector('#tabla-carrito');
   tabla.classList.toggle('mostrar');
 };
+
+
   //funcion pintar desde local que se pueda usar para pintar el carrito y la otra url??
+
+
 ///obtener productos PRUEBA
 const obtenerProductos = async () => {
   try {
@@ -185,7 +221,9 @@ const obtenerProductos = async () => {
     console.log(error);
   }
 };
+
 //const productos = obtenerProductos();
+
 toggleTabla();
 createCard();
 addLocal();
